@@ -10,10 +10,11 @@ Feature: Employee CRUD and Search Operations
       | updatedmName     | 1 |
       | updatedLname     | 1 |
     Then I search the employee and ensure that it is searched using below values
-      | updatefNamevalue | AutUserFname1 |
-      | updatedmName     | AutUserMname1 |
+      | updatefNamevalue | AutUserFName1 |
+      | updatedmName     | AutUserMName1 |
+      | updatedlName     | AutUserLName1 |
     And I select and Delete the Updated Employee and verify employee is not  in search result
 
     Examples: 
       | fName        | mName        | Lname        |
-     | AutU1firstName | utU1Mname | utU1Lname |
+ | AutUserFName | AutUserMName | AutUserLName |
