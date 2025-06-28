@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.qa.runner.Runner" time="62.448" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.qa.runner.Runner" time="169.548" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.20+9-LTS-256"/>
@@ -65,11 +65,11 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="Given Navigate to PIM after log in with Admin user" classname="| AutU1firstName | utU1Mname | utU1Lname |" time="0.002"/>
-  <testcase name="When I Add employee with  first name as &quot;AutU1firstName&quot; and mname as &quot;utU1Mname&quot; and lName as &quot;utU1Lname&quot;" classname="| AutU1firstName | utU1Mname | utU1Lname |" time="0"/>
-  <testcase name="Then I  verify employeeAdded in list with  first name as &quot;AutU1firstName&quot; and mname as &quot;utU1Mname&quot; and lName as &quot;utU1Lname&quot;" classname="| AutU1firstName | utU1Mname | utU1Lname |" time="0"/>
-  <testcase name="When I click on Edit button and update below values and save the Data" classname="| AutU1firstName | utU1Mname | utU1Lname |" time="0"/>
-  <testcase name="Then I search the employee and ensure that it is searched using below values" classname="| AutU1firstName | utU1Mname | utU1Lname |" time="0"/>
-  <testcase name="And I select and Delete the Updated Employee and verify employee is not  in search result" classname="| AutU1firstName | utU1Mname | utU1Lname |" time="0"/>
-  <testcase name="| AutU1firstName | utU1Mname | utU1Lname |" classname="| AutU1firstName | utU1Mname | utU1Lname |" time="0.675"/>
+  <testcase name="Given Navigate to PIM after log in with Admin user" classname="| AutUserFName | AutUserMName | AutUserLName |" time="0.006"/>
+  <testcase name="When I Add employee with  first name as &quot;AutUserFName&quot; and mname as &quot;AutUserMName&quot; and lName as &quot;AutUserLName&quot;" classname="| AutUserFName | AutUserMName | AutUserLName |" time="0"/>
+  <testcase name="Then I  verify employeeAdded in list with  first name as &quot;AutUserFName&quot; and mname as &quot;AutUserMName&quot; and lName as &quot;AutUserLName&quot;" classname="| AutUserFName | AutUserMName | AutUserLName |" time="0"/>
+  <testcase name="When I click on Edit button and update below values and save the Data" classname="| AutUserFName | AutUserMName | AutUserLName |" time="0"/>
+  <testcase name="Then I search the employee and ensure that it is searched using below values" classname="| AutUserFName | AutUserMName | AutUserLName |" time="0"/>
+  <testcase name="And I select and Delete the Updated Employee and verify employee is not  in search result" classname="| AutUserFName | AutUserMName | AutUserLName |" time="0"/>
+  <testcase name="| AutUserFName | AutUserMName | AutUserLName |" classname="| AutUserFName | AutUserMName | AutUserLName |" time="0.43"/>
 </testsuite>
