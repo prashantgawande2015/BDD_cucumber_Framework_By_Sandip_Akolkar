@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.qa.util.ElementActions;
+import com.qa.util.WaitMethods;
 
 import cucumber.api.Scenario;
 
@@ -66,6 +67,15 @@ public class AddEmployeePage {
 	@FindBy(xpath = "//div[@class='oxd-table-row oxd-table-row--with-border oxd-table-row--clickable']/child::div[3]")
 	WebElement searhedAmpFnameandMName;
 
+	//@FindBy(xpath="//div[@class='oxd-table-row oxd-table-row--with-border oxd-table-row--clickable']/child::div[9]")
+	@FindBy(xpath="//div[@role='table']//div[1]//div[1]//div[9]//div[1]//button[1]//i[1]")
+	WebElement editEmployeeButton;
+	
+	@FindBy(xpath = "//div[@class='oxd-table-row oxd-table-row--with-border oxd-table-row--clickable']/child::div[9]/child::div/button[2]")
+	WebElement deleteButton;
+
+	@FindBy(xpath = "//button[text()=' Yes, Delete ']")
+	WebElement confirmDeleteButton;
 	
 	// step 2: Page class constructor
 	public AddEmployeePage(WebDriver driver, Scenario scenario) {
@@ -100,9 +110,16 @@ public class AddEmployeePage {
 	public void addnewEmployee(String firstName, String middleName,String lastName)
 	{
 		ElementActions.sendKeys(driver, empFirstNameField, scenario, firstName);
+		WaitMethods.staticWait(5000);
+		
 		ElementActions.sendKeys(driver, empMiddleNameField, scenario, middleName);
+		WaitMethods.staticWait(5000);
+		
 		ElementActions.sendKeys(driver, empLastName, scenario, lastName);
+		WaitMethods.staticWait(5000);
+		
 		ElementActions.clickElement(driver, saveButton, scenario);
+		WaitMethods.staticWait(5000);
 	}
 
 	//-----------------------Page operations methods to Search Employee--------
@@ -119,14 +136,33 @@ public class AddEmployeePage {
 	public String searchEmployeeByname(String fName, String mName, String lName)
  {
 
-		ElementActions.sendKeys(driver, searchbyEmpNameField, scenario, fName + " " + mName + " " + lName);
+		//ElementActions.sendKeys(driver, searchbyEmpNameField, scenario, fName + " " + mName + " " + lName);
+		ElementActions.sendKeys(driver, searchbyEmpNameField, scenario, fName + " " + mName + " " );
+		WaitMethods.staticWait(5000);
 		ElementActions.clickElement(driver, SearchButton, scenario);
-
+		WaitMethods.staticWait(5000);
 		return ElementActions.getText(driver, searhedAmpFnameandMName, scenario);
 
 	}
 	
+	public void editEmpinfo(String fnameAppendValue, String mNameAppendValue, String lNameAppendValue) {
+		ElementActions.clickElement(driver, editEmployeeButton, scenario);
+		WaitMethods.staticWait(5000);
+		ElementActions.sendKeys(driver, empFirstNameField, scenario, fnameAppendValue);
+		WaitMethods.staticWait(5000);
+		ElementActions.sendKeys(driver, empMiddleNameField, scenario, mNameAppendValue);
+		WaitMethods.staticWait(5000);
+		ElementActions.sendKeys(driver, empLastName, scenario, lNameAppendValue);
+		WaitMethods.staticWait(5000);
+		ElementActions.clickElement(driver, saveButton, scenario);
+
+	}
 	
-	
+	public void deleteSearhedEmp() {
+
+		ElementActions.clickElement(driver, deleteButton, scenario);
+		ElementActions.clickElement(driver, confirmDeleteButton, scenario);
+
+	}
 	
 }
