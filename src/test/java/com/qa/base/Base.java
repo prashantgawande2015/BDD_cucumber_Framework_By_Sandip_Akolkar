@@ -14,7 +14,7 @@ public class Base {
 	public static WebDriver driver;
 
 	/**
-	 * @return this method will start the browser and start the Applciation 
+	 * @return this method will Initilize the browser and start the Applciation 
 	 */
 	public WebDriver initializeWebDriver() {
 
