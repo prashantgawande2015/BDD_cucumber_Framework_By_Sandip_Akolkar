@@ -1,6 +1,8 @@
 package com.qa.stepdefinations;
 
 
+import org.junit.Assert;
+
 import com.qa.base.Base;
 import com.qa.pages.AddEmployeePage;
 import com.qa.pages.LoginPage;
@@ -44,10 +46,11 @@ public void navigate_to_PIM_after_log_in_with_Admin_user() throws Throwable {
 	
 	scenario.write("Nevigating to PIM page after LOGIN");
 	objAddEmployeePage= new AddEmployeePage(driver,scenario);
-	objAddEmployeePage.navigateToPIMPage();
+	//objAddEmployeePage.navigateToPIMPage();
+	String expectedPIMPageTitle =objAddEmployeePage.navigateToPIMPage();
 	WaitMethods.staticWait(5000);
 	scenario.embed(CaptureScreenshot.captureImage(driver), "image/png");
-	
+	Assert.assertEquals("PIM", expectedPIMPageTitle);
 }
 
 @When("^I Add employee with  first name as \"([^\"]*)\" and mname as \"([^\"]*)\" and lName as \"([^\"]*)\"$")
@@ -55,6 +58,7 @@ public void i_Add_employee_with_first_name_as_and_mname_as_and_lName_as(String f
 	scenario.write("Adding new employee by nevigating to 'Add Empployee page' !");
 	objAddEmployeePage.navigateToAddEmployeePage();
 	WaitMethods.staticWait(5000);
+	objAddEmployeePage.addnewEmployee(fName, mName, lName);
 	scenario.embed(CaptureScreenshot.captureImage(driver), "image/png");
 	
 	
@@ -66,24 +70,45 @@ public void i_verify_employeeAdded_in_list_with_first_name_as_and_mname_as_and_l
 		String lName) throws Throwable {
 	scenario.write("Searching the newly added emp in the list");
 	objAddEmployeePage.navigateToEmployeeListPage();
-	objAddEmployeePage.searchEmployeeByname(fName, mName, lName);
+	WaitMethods.staticWait(15000);
+	String actualSearchedFNameandMname = objAddEmployeePage.searchEmployeeByname(fName, mName, lName);
 	WaitMethods.staticWait(5000);
 	scenario.embed(CaptureScreenshot.captureImage(driver), "image/png"); 
+	Assert.assertEquals(fName + " " + mName, actualSearchedFNameandMname);
 }
 
 @When("^I click on Edit button and update below values and save the Data$")
-public void i_click_on_Edit_button_and_update_below_values_and_save_the_Data(DataTable arg1) throws Throwable {
-    
+public void i_click_on_Edit_button_and_update_below_values_and_save_the_Data(DataTable empEditinfoTable) throws Throwable {
+	scenario.write("Editing the Searched employee Details ");
+	WaitMethods.staticWait(10000);
+	System.out.println("==========="+empEditinfoTable.raw().get(0).get(1));
+	objAddEmployeePage.editEmpinfo(empEditinfoTable.raw().get(0).get(1), empEditinfoTable.raw().get(1).get(1),
+			empEditinfoTable.raw().get(2).get(1));
+	
+	WaitMethods.staticWait(5000);
+	scenario.embed(CaptureScreenshot.captureImage(driver), "image/png");
 }
 
 @Then("^I search the employee and ensure that it is searched using below values$")
-public void i_search_the_employee_and_ensure_that_it_is_searched_using_below_values(DataTable arg1) throws Throwable {
-  
+public void i_search_the_employee_and_ensure_that_it_is_searched_using_below_values(DataTable searchEditedempinfoTable) throws Throwable {
+	
+	scenario.write("Searching theedited amp in the list");
+	objAddEmployeePage.navigateToEmployeeListPage();
+	objAddEmployeePage.searchEmployeeByname(searchEditedempinfoTable.raw().get(0).get(1),
+			searchEditedempinfoTable.raw().get(1).get(1), searchEditedempinfoTable.raw().get(2).get(1));
+	WaitMethods.staticWait(5000);
+	scenario.embed(CaptureScreenshot.captureImage(driver), "image/png");	
+
+	
 }
 
 @Then("^I select and Delete the Updated Employee and verify employee is not  in search result$")
 public void i_select_and_Delete_the_Updated_Employee_and_verify_employee_is_not_in_search_result() throws Throwable {
     
+	scenario.write("Deleting the searched employee !");
+	objAddEmployeePage.deleteSearhedEmp();
+	WaitMethods.staticWait(5000);
+	scenario.embed(CaptureScreenshot.captureImage(driver), "image/png");
 }	
 
 @After 
